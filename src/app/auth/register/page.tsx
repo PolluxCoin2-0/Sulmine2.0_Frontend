@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import {
   WalletIcon,
@@ -93,8 +94,8 @@ const RegistrationPage: React.FC = () => {
         return;
       }
 
-      if(parseInt(sulAmount)<100){
-        toast.error("Sul amount should be greater than or equal to 100.");
+      if(parseInt(sulAmount)<10){
+        toast.error("Sul amount should be greater than or equal to 10.");
         setIsLoading(false);
         return;
       }
@@ -103,9 +104,9 @@ const RegistrationPage: React.FC = () => {
     const checkUserExistedApiData = await checkUserExistedApi(userWalletAddress, referralAddress);
     console.log("checkUserExistedApiData", checkUserExistedApiData);
     
-    if(checkUserExistedApiData?.statusCode!==200){
-      toast.error("Internal server error!");
-      throw new Error("Internal server error!");
+    if(checkUserExistedApiData?.message!=="User Not Found"){
+      toast.error(checkUserExistedApiData?.message);
+      throw new Error("User Not Found");
     }
 
      if(checkUserExistedApiData?.data === "Wallet address Already Exist"){
@@ -209,8 +210,8 @@ const RegistrationPage: React.FC = () => {
         throw new Error("Invalid Referral Code!");
       }
 
-      if (registerApiResponseData?.statusCode !== 200) {
-        toast.error("Registration failed!");
+      if (registerApiResponseData?.message !== "User Created Successfully") {
+        toast.error(registerApiResponseData?.message);
         throw new Error("Registration failed!");
       }
 
@@ -222,8 +223,9 @@ const RegistrationPage: React.FC = () => {
         parseInt(sulAmount),
         stakedSignBroadcastTransactionStatusFuncRes?.transactionStatus,
         registerApiResponseData?.data?.id);
-
-        if(web2CreateStakeApiData?.statusCode!==200){
+         console.log({web2CreateStakeApiData});
+        if(!web2CreateStakeApiData?.data){
+          toast.error("Web2 create stake api failed!")
           throw new Error("Web2 create stake api failed!");
         }
 
@@ -333,7 +335,9 @@ const RegistrationPage: React.FC = () => {
               />
               <WalletIcon className="absolute top-1/2 left-3 md:left-4 h-6 w-6 md:h-8 md:w-8 text-white/60 group-focus-within:text-black transform -translate-y-1/2 transition duration-300" />
             </div>
+
             {/* Amount Input */}
+        
             <div className="relative group">
               <input
                 value={sulAmount}
@@ -353,6 +357,8 @@ const RegistrationPage: React.FC = () => {
               className="absolute top-1/2 left-3 md:left-4 h-6 w-6 md:h-8 md:w-8 text-white/60 group-focus-within:text-black transform -translate-y-1/2 transition duration-300"
               />
             </div>
+       
+
             {/* Referral Wallet Address Input */}
             <div className="relative group">
               <input

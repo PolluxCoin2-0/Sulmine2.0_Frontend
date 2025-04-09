@@ -22,9 +22,9 @@ const ClaimReward: React.FC= () => {
         setComponentLoading(true);
         // GET ALL CLAIM REWARD TRANSACTION DATA
         const claimRewardData = await claimRewardTransactionWeb2Api(userStateData?.dataObject?.token as string);
-    setTotalCount(claimRewardData?.data?.transactionCount);
+        setTotalCount(claimRewardData?.transactionCount);
         console.log({claimRewardData});
-        setClaimRewardDataArray(claimRewardData.data.transactions);
+        setClaimRewardDataArray(claimRewardData?.transactions);
 
         // GET TOTAL CLAIM REWARD AMOUNT
         const claimRewardAmountDataApi = await getTotalClaimRewwardApi(userStateData?.dataObject?.walletAddress as string);
@@ -32,7 +32,8 @@ const ClaimReward: React.FC= () => {
         setClaimRewardAmount(claimRewardAmountDataApi?.data);
         setComponentLoading(false);
     }
-
+     
+    
     useEffect(()=>{
         if(userStateData?.isLogin){
          fetchData();
