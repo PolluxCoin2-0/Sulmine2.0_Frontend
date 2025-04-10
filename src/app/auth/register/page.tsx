@@ -169,6 +169,12 @@ const RegistrationPage: React.FC = () => {
 
         // SIGN TRANSACTION
       const signBroadcastTransactionStatusFuncRes = await SignBroadcastTransactionStatus(approvalRawData?.data?.transaction, userStateData?.isUserSR);
+
+      if (!signBroadcastTransactionStatusFuncRes?.txid || !signBroadcastTransactionStatusFuncRes?.transactionStatus) {
+        toast.error("Transaction failed . Please try again.");
+        return;
+      }
+
       if (signBroadcastTransactionStatusFuncRes.transactionStatus === "REVERT") {
         toast.error("Transaction failed!");
         throw new Error("Transaction failed!");
@@ -188,6 +194,12 @@ const RegistrationPage: React.FC = () => {
 
         // SIGN TRANSACTION
         const stakedSignBroadcastTransactionStatusFuncRes = await SignBroadcastTransactionStatus(stakeBalanceApiData?.data?.transaction, userStateData?.isUserSR);
+
+        if (!stakedSignBroadcastTransactionStatusFuncRes?.txid || !stakedSignBroadcastTransactionStatusFuncRes?.transactionStatus) {
+          toast.error("Transaction failed . Please try again.");
+          return;
+        }
+
         if (stakedSignBroadcastTransactionStatusFuncRes.transactionStatus === "REVERT") {
           toast.error("Transaction failed!");
           throw new Error("Transaction failed!");
