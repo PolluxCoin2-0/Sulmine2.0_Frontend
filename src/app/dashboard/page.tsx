@@ -329,7 +329,7 @@ const DashBoard: React.FC = () => {
           signBroadcastTransactionStatusFuncRes?.transactionStatus,
           userStateData?.dataObject?.token as string
         )
-        if(!claimRewardWeb2ApiData?.data){
+        if(!claimRewardWeb2ApiData){
           throw new Error("Create claim reward web2 api failed!");
         }
       console.log({ claimRewardWeb2ApiData });
