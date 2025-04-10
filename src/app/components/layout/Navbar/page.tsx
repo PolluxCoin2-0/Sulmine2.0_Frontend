@@ -84,22 +84,22 @@ const Navbar: React.FC = () => {
         </Link>
 
         <div className="flex items-center space-x-2 md:space-x-5">
-        <Link 
-  href="/Support" 
-  className="font-medium text-base text-white px-6 py-2 rounded-lg border-2 border-gray-500
+          <Link
+            href="/Support"
+            className="font-medium text-base text-white px-8 py-2 rounded-xl border-2 border-gray-500
   transition-all duration-300 ease-in-out shadow-md 
   hover:border-[#572EAC] hover:text-white hover:bg-[#1a1a1a] hover:shadow-lg"
->
-  Help
-</Link>
+          >
+            Help
+          </Link>
           {/* Connect Wallet Button */}
-          <Link
+          {/* <Link
             href="/StakeUnstake"
             className="whitespace-nowrap bg-gradient-to-r from-[#572EAC] to-[#8922B3] text-sm md:text-base text-white font-medium px-3 md:px-6 py-2 rounded-lg shadow-lg 
         hover:scale-105 transition-transform"
           >
           Unstake
-          </Link>
+          </Link> */}
 
           <button
             onClick={handleSignOut}
@@ -107,12 +107,9 @@ const Navbar: React.FC = () => {
           >
             <span className="w-full h-full bg-gradient-to-r from-[#572EAC] to-[#8922B3] group-hover:from-[#572EAC] group-hover:to-[#8922B3] absolute"></span>
             <span className="relative px-3 md:px-6 py-2 transition-all ease-out bg-gray-900 rounded-xl group-hover:bg-opacity-0 duration-400">
-              <span className="relative text-white text-nowrap">
-              Sign out
-                </span>
+              <span className="relative text-white text-nowrap">Sign out</span>
             </span>
           </button>
-
         </div>
       </div>
     </nav>

@@ -71,7 +71,7 @@ const Login: React.FC = () => {
   const proceedWithLogin = async (walletAddress: string) => {
     try {
       const loginApiData = await loginApi(walletAddress);
-      if (loginApiData?.statusCode !== 200) {
+      if (loginApiData?.message !== "Login Successfully") {
         throw new Error("Invalid wallet address or login failed.");
       }
 

@@ -1,6 +1,7 @@
 interface LoginApiResponse {
   statusCode: number;
   data: object;
+  message:string;
 }
 
 interface getbalanceInterface {
@@ -51,16 +52,22 @@ interface UserDetailsData {
   totalROI: number;
   referrer: string;
   referralCount: number;
-  eligibleForSilverPool: boolean;
-  eligibleForGoldPool: boolean;
-  eligibleForPlatinumPool: boolean;
-  eligibleForDiamondPool: boolean;
-  eligibleForCrownDiamondPool: boolean;
-  silverReward: number;
-  goldReward: number;
-  platinumReward: number;
-  diamondReward: number;
-  crownDiamondReward: number;
+  eligiblePool1: boolean;
+  eligiblePool2: boolean;
+  eligiblePool3: boolean;
+  eligiblePool4: boolean;
+  eligiblePool5: boolean;
+  eligiblePool6: boolean;
+  eligiblePool7: boolean;
+  eligiblePool8: boolean;
+  pool1Reward: number;
+  pool2Reward: number;
+  pool3Reward: number;
+  pool4Reward: number;
+  pool5Reward: number;
+  pool6Reward: number;
+  pool7Reward: number;
+  pool8Reward: number;
 }
 
 interface userDetailsInterface {
@@ -130,6 +137,8 @@ interface getAllStakesResponseInterface {
     transactionCount: number;
     transactions: TransactionInterface[];
   };
+  transactionCount: number;
+    transactions: TransactionInterface[];
   statusCode: number;
   message: string;
 }
@@ -188,7 +197,8 @@ interface web2CreateMintInterface {
 }
 
  interface allMintTransactionResponseInterface {
-  data: MintTransactionDataInterface;
+  transactionCount: number;
+  transactions: MintTransactionInterface[];
   statusCode: number;
   message: string;
 }

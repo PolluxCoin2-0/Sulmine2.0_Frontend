@@ -22,6 +22,7 @@ import { TransactionInterface, UserDetailsData } from "@/interface";
 import { RootState } from "@/redux/store";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
+import ProgressBar from "../components/ProgressBar";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { SignBroadcastTransactionStatus } from "@/lib/signBroadcastTransactionStatus";
@@ -30,7 +31,7 @@ import FetchTime from "./FetchTime";
 const DashBoard: React.FC = () => {
   const router = useRouter();
   const userStateData = useSelector((state: RootState)=>state?.wallet);
-  console.log({ userStateData });
+
   const [isComponentLoading, setComponentLoading] = useState <boolean>(false);
   const [isStakeLoading, setIsStakeLoading] = useState <boolean>(false);
   const [isClaimLoading, setIsClaimLoading] = useState <boolean>(false);
@@ -46,7 +47,8 @@ const DashBoard: React.FC = () => {
   const [contractAmount, setContractAmount] = useState<number>(0);
   const [totalStakeLengthFromWeb3, setTotalStakeLengthFromWeb3] = useState<number>(0);
   const [initialReturnAmount, setInitialReturnAmount] = useState<number>(0);
-
+  
+  console.log({stakedArray});
   useEffect(()=>{
     if(userStateData?.isLogin){
      fetchData();
@@ -79,7 +81,7 @@ const DashBoard: React.FC = () => {
         getAllUserCountWeb2Api(),
         getDirectBonusApi(walletAddress),
         getCappingAmountApi(walletAddress),
-        getBalanceApi("PNKDNUiXnjXm1FAeuBhuobnyvHHR1hYdvj"),
+        getBalanceApi("PLrtYuAoDZCLoCxycAb76r6w5w8x2ZUW8f"),
         getTotalStakeLengthFromWeb3(walletAddress),
         getInitialReturn(walletAddress)
       ]);
@@ -88,7 +90,8 @@ const DashBoard: React.FC = () => {
       setUserDetails(userDetailsApiData?.data);
       setReferralAmount(referralRewardAPiData?.data);
 
-      const updatedStakes = stakesDataArray.data.transactions.map(
+      console.log("staked array", stakesDataArray)
+      const updatedStakes = stakesDataArray?.transactions.map(
         (item: TransactionInterface) => ({
           ...item,
           isLoading: false,
@@ -109,8 +112,6 @@ const DashBoard: React.FC = () => {
       setComponentLoading(false);
     }
   }
-
-  console.log({stakedArray})
   
   if(!userStateData?.isLogin){
    router.push("/");
@@ -163,8 +164,8 @@ const DashBoard: React.FC = () => {
         return;
       }
 
-      if(parseInt(stakeAmount)<100){
-        toast.error("Sul amount should be greater than or equal to 100.");
+      if(parseInt(stakeAmount)<10){
+        toast.error("Sul amount should be greater than or equal to 10.");
         setIsStakeLoading(false);
         return;
       }
@@ -208,6 +209,11 @@ const DashBoard: React.FC = () => {
       }
 
       const signBroadcastTransactionStatusFuncRes = await SignBroadcastTransactionStatus(approvalRawData?.data?.transaction, userStateData?.isUserSR);
+
+      if (!signBroadcastTransactionStatusFuncRes?.txid || !signBroadcastTransactionStatusFuncRes?.transactionStatus) {
+        toast.error("Transaction failed . Please try again.");
+        return;
+      }
       if (signBroadcastTransactionStatusFuncRes.transactionStatus === "REVERT") {
         toast.error("Transaction failed!");
         throw new Error("Transaction failed!");
@@ -221,6 +227,12 @@ const DashBoard: React.FC = () => {
       }
 
       const stakeSignBroadcastTransactionStatusFuncRes = await SignBroadcastTransactionStatus(stakedData?.data?.transaction, userStateData?.isUserSR);
+
+      if (!stakeSignBroadcastTransactionStatusFuncRes?.txid || !stakeSignBroadcastTransactionStatusFuncRes?.transactionStatus) {
+        toast.error("Transaction failed . Please try again.");
+        return;
+      }
+
       if (stakeSignBroadcastTransactionStatusFuncRes.transactionStatus === "REVERT") {
         toast.error("Transaction failed!");
         throw new Error("Transaction failed!");
@@ -234,10 +246,11 @@ const DashBoard: React.FC = () => {
         stakeSignBroadcastTransactionStatusFuncRes?.transactionStatus,
         userStateData?.dataObject?._id as string);
 
-        if(web2CreateStakeApiData?.statusCode!==200){
-          throw new Error("Web2 create stake api failed!");
-        }
-
+        if(!web2CreateStakeApiData?.data){
+                  toast.error("Web2 create stake api failed!")
+                  throw new Error("Web2 create stake api failed!");
+                }
+        
         console.log({web2CreateStakeApiData})
 
       setStakeAmount("");
@@ -294,6 +307,12 @@ const DashBoard: React.FC = () => {
 
       // SIGN TRANSACTION
       const signBroadcastTransactionStatusFuncRes = await SignBroadcastTransactionStatus(claimRewardData?.data?.transaction, userStateData?.isUserSR);
+
+      if (!signBroadcastTransactionStatusFuncRes?.txid || !signBroadcastTransactionStatusFuncRes?.transactionStatus) {
+        toast.error("Transaction failed . Please try again.");
+        return;
+      }
+
       if (signBroadcastTransactionStatusFuncRes.transactionStatus === "REVERT") {
         toast.error("Transaction failed!");
         throw new Error("Transaction failed!");
@@ -372,6 +391,12 @@ const DashBoard: React.FC = () => {
       
       // SIGN TRANSACTION
       const signBroadcastTransactionStatusFuncRes = await SignBroadcastTransactionStatus(mintData?.data?.transaction, userStateData?.isUserSR);
+
+      if (!signBroadcastTransactionStatusFuncRes?.txid || !signBroadcastTransactionStatusFuncRes?.transactionStatus) {
+        toast.error("Transaction failed . Please try again.");
+        return;
+      }
+
       if (signBroadcastTransactionStatusFuncRes.transactionStatus === "REVERT") {
         toast.error("Transaction failed!");
         throw new Error("Transaction failed!");
@@ -386,11 +411,11 @@ const DashBoard: React.FC = () => {
         userStateData?.dataObject?.token as string)
         console.log({web2MintApiData})
 
-        if(web2MintApiData?.statusCode!==200){
+        if(!web2MintApiData){
           throw new Error("Save to DB Web2 Api Failed transaction");
         }
 
-    //  // UPDATE WEB2 MINT DATA
+    // UPDATE WEB2 MINT DATA
     //  const web2updateStakeDataApi = await updateStakeByIdWeb2Api(userID);
     //  console.log({web2updateStakeDataApi});
    
@@ -437,7 +462,7 @@ const DashBoard: React.FC = () => {
         {/* Referral Link Section */}
       <div
         className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
-         py-[18px] px-4 lg:px-8 rounded-xl flex justify-between items-center"
+         py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="hidden xl:block text-white font-bold text-base truncate">
           Referral link: <span className="font-normal">
@@ -469,7 +494,7 @@ const DashBoard: React.FC = () => {
       {/* CAPPING */}
       <div
         className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
-         py-[18px] px-4 lg:px-8 rounded-xl flex justify-between items-center"
+         py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="text-white font-bold text-base truncate">
         Capping :
@@ -480,7 +505,7 @@ const DashBoard: React.FC = () => {
       {/* TOTAL USER */}
       <div
         className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
-         py-[18px] px-4 lg:px-8 rounded-xl flex justify-between items-center"
+         py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="text-white font-bold text-base truncate">
         Total Users / Total Staked :
@@ -491,7 +516,7 @@ const DashBoard: React.FC = () => {
       {/* Initial Return */}
       <div
         className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
-         py-[18px] px-4 lg:px-8 rounded-xl flex justify-between items-center"
+         py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="text-white font-bold text-base truncate">
         Initial Return :
@@ -541,6 +566,7 @@ const DashBoard: React.FC = () => {
     </div>
 
     {/* Action Buttons */}
+    <div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Stake Token Section */}
       <div className="border border-black bg-gradient-to-r from-[rgba(138,34,179,0.34)] via-[rgba(43,37,90,0.25)] to-[rgba(105,26,139,0.44)] rounded-xl px-6 md:px-8 py-8 md:py-10 flex flex-col justify-between">
@@ -607,15 +633,26 @@ const DashBoard: React.FC = () => {
         }
       </div>
     </div>
+
+    {/* circular timeline */}
+    <div className="flex justify-center items-center mt-6 bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
+         py-[18px] px-4 lg:px-8 rounded-xl ">
+      <ProgressBar/>
+    </div>
+    </div>
   </div>
 
-  {/* Second Subdiv */}
+ {/* Second Subdiv */}
   <div className="space-y-4 md:space-y-[12px] flex flex-col justify-between">
-    {[{ value: userDetails?.silverReward, text: "Silver Pool", gradient: "bg-silver-pool", imagePath: SilverPool, isEligible: userDetails?.eligibleForSilverPool },
-      { value: userDetails?.goldReward, text: "Gold Pool", gradient: "bg-gold-pool", imagePath: GoldPool, isEligible: userDetails?.eligibleForGoldPool },
-      { value: userDetails?.platinumReward, text: "Platinum Pool", gradient: "bg-platinum-pool", imagePath: PlatinumPool, isEligible: userDetails?.eligibleForPlatinumPool},
-      { value: userDetails?.diamondReward, text: "Diamond Pool", gradient: "bg-diamond-pool", imagePath: DiamondPool, isEligible: userDetails?.eligibleForDiamondPool},
-      { value: userDetails?.crownDiamondReward, text: "Crown Diamond Pool", gradient: "bg-crown-diamond-pool", imagePath: CrownDiamondPool, isEligible: userDetails?.eligibleForCrownDiamondPool}]
+    {[{ value: userDetails?.pool1Reward, text: "Silver Pool", gradient: "bg-silver-pool", imagePath: SilverPool, isEligible: userDetails?.eligiblePool1 },
+      { value: userDetails?.pool2Reward, text: "Gold Pool", gradient: "bg-gold-pool", imagePath: GoldPool, isEligible: userDetails?.eligiblePool2 },
+      { value: userDetails?.pool3Reward, text: "Emerald Pool", gradient: "bg-platinum-pool", imagePath: PlatinumPool, isEligible: userDetails?.eligiblePool3},
+      { value: userDetails?.pool4Reward, text: "Platinum  Pool", gradient: "bg-diamond-pool", imagePath: DiamondPool, isEligible: userDetails?.eligiblePool4},
+      { value: userDetails?.pool5Reward, text: "Diamond Pool", gradient: "bg-crown-diamond-pool", imagePath: CrownDiamondPool, isEligible: userDetails?.eligiblePool5},
+      { value: userDetails?.pool6Reward, text: "Crown Diamond Pool", gradient: "bg-gold-pool", imagePath: GoldPool, isEligible: userDetails?.eligiblePool6 },
+      { value: userDetails?.pool7Reward, text: "Titanium Pool", gradient: "bg-platinum-pool", imagePath: PlatinumPool, isEligible: userDetails?.eligiblePool7},
+      { value: userDetails?.pool8Reward, text: "Palladium Pool", gradient: "bg-diamond-pool", imagePath: DiamondPool, isEligible: userDetails?.eligiblePool8},
+    ]
       .map(({ value, text, gradient, imagePath, isEligible }, idx) => (
         <div
           key={idx}
@@ -637,13 +674,14 @@ const DashBoard: React.FC = () => {
       ))}
   </div>
       </div>
-
+       
       {/* Mint Table */}
       <div className="bg-gradient-to-b from-[rgba(43,37,90,0.34)] to-[rgba(200,200,200,0.09)] rounded-xl border-gray-400 border-[1px] border-opacity-30 p-4 my-4 w-full overflow-x-auto">
   {/* Header Section */}
   <div className="bg-[#212D49] rounded-xl text-white flex flex-row items-center justify-between py-2 min-w-[850px] md:min-w-0">
     <p className="font-bold px-8 py-2 w-[20%] text-left">Amount / InitialReturn</p>
     <p className="font-bold px-4 py-2 w-[20%] text-center">Maturity Days</p>
+    <p className="font-bold px-8 py-2 w-[20%] text-center">Deposit Phase</p>
     <p className="font-bold px-4 py-2 w-[20%] text-center">Invest Date</p>
     <p className="font-bold px-4 py-2 w-[20%] text-center">Last Mint</p>
     <p className="font-bold px-8 py-2 w-[20%] text-right">Mint Reward</p>

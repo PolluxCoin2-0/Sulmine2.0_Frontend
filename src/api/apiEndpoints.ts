@@ -20,6 +20,7 @@ const API_ENDPOINTS = {
       getUserStakes : "/getUserStakes",
       getStakeLength :"/getStakeLength",
       getInitialReturn : "/getInitialReturn",
+      getCurrentStakedAmount: "/getCurrentStakedAmount",
     },
     web2:{
       createStake:"/createStake",
@@ -31,7 +32,7 @@ const API_ENDPOINTS = {
       getAllUserRewardTrx :"/getAllUserRewardTrx",
       getAllStakes:"/getAllStakes",
       getAllUserCount:"/getAllUserCount",
-      getAllReferrals : "/getAllReferrals",
+      getAllReferrals : "/getAllLevelReferrals",
       calculateTotalStakedAmount : "/calculateTotalStakedAmount",
       getDownlineBusiness: "/getAllDownlineBusiness",
     },

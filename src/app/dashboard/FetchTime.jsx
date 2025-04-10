@@ -40,7 +40,10 @@ const FetchTime = ({ userStateData, index, buttonClick }) => {
     >
       <p className="px-8 py-2 w-[20%] text-left">{mintTime?.data?.amount} / {mintTime?.data?.initialReturn ?? 0}</p>
       <p className="px-4 py-2 w-[20%] text-center">
-        {mintTime?.data?.mintCount} / 1000
+        {mintTime?.data?.mintCount} / {mintTime?.data?.maturityDuration} 
+      </p>
+      <p className="px-4 py-2 w-[20%] text-center">
+        {mintTime?.data?.currentPhase}
       </p>
       <p className="px-4 py-2 w-[20%] text-left lg:text-center">
         {mintTime?.data?.startTime}
@@ -57,11 +60,10 @@ const FetchTime = ({ userStateData, index, buttonClick }) => {
           <button
             disabled={mintTime?.data?.isUnstaked}
             onClick={handleButtonClick}
-            className={`w-full lg:w-[50%] ${
-              mintTime?.data?.isUnstaked
-                ? "bg-gradient-to-r from-[rgba(137,34,179,0.3)] via-[rgba(90,100,214,0.3)] to-[rgba(185,77,228,0.3)]"
-                : "bg-gradient-to-r from-[rgba(137,34,179,0.7)] via-[rgba(90,100,214,0.7)] to-[rgba(185,77,228,0.7)]"
-            } 
+            className={`w-full lg:w-[50%]
+           
+             bg-gradient-to-r from-[rgba(137,34,179,0.7)] via-[rgba(90,100,214,0.7)] to-[rgba(185,77,228,0.7)]
+            
       text-white text-lg font-semibold px-4 py-2 rounded-xl transform hover:scale-105 transition delay-300`}
           >
             Mint

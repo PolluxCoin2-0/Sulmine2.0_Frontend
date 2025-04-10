@@ -25,6 +25,7 @@ const ReferralEarnings = () => {
         userStateData?.dataObject?.token
       );
       console.log({ userReferralTreeData });
+    
       setReferralEarnings(userReferralTreeData);
 
       const downlineBusinessAmountData = await getDownlineBusinessFund( userStateData?.dataObject?.walletAddress);
@@ -37,6 +38,8 @@ const ReferralEarnings = () => {
       setLoading(false); // End loading
     }
   };
+  console.log({referralEarnings});
+  console.log("referaldata......", referralEarnings?.data);
 
   const toggleLevel = (level) => {
     setExpandedLevel(expandedLevel === level ? null : level);
@@ -65,7 +68,7 @@ const ReferralEarnings = () => {
             <div className="text-center text-white font-bold py-4">
               Loading...
             </div>
-          ) : referralEarnings?.data?.data ? (
+          ) : referralEarnings?.data? (
             <table className="w-full text-white text-sm border-separate border-spacing-y-2">
               <thead>
                 <tr className="bg-[#212D49] rounded-md text-xs md:text-base">
@@ -76,7 +79,7 @@ const ReferralEarnings = () => {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(referralEarnings?.data?.data || {})
+                {Object.keys(referralEarnings?.data|| {})
                   .filter((key) => key.startsWith("level") && key.endsWith("Count"))
                   .map((key, index) => {
                     const level = index + 1;
@@ -84,7 +87,7 @@ const ReferralEarnings = () => {
                     const depositKey = `level${level}TotalDeposit`;
                     const referralsKey = `level${level}Referrals`;
                     const referrals =
-                      referralEarnings?.data?.data?.[referralsKey] || [];
+                      referralEarnings?.data?.[referralsKey] || [];
 
                     return (
                       <React.Fragment key={level}>
@@ -99,10 +102,10 @@ const ReferralEarnings = () => {
                             {level}
                           </td>
                           <td className="p-3 text-center text-xs md:text-sm">
-                            {referralEarnings?.data?.data?.[countKey] || 0}
+                            {referralEarnings?.data?.[countKey] || 0}
                           </td>
                           <td className="p-3 text-center text-xs md:text-sm">
-                            {referralEarnings?.data?.data?.[depositKey] || 0}
+                            {referralEarnings?.data?.[depositKey] || 0}
                           </td>
                           <td className="p-3 text-center text-gray-400 cursor-pointer rounded-r-md flex justify-center items-center space-x-2">
                             <span onClick={() => toggleLevel(level)}>
