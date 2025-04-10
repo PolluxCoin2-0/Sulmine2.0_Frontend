@@ -40,13 +40,13 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
         const amount = await getStakeAmountApi();
 
         setStakeAmount(amount?.data);
-
         // Determine phase based on amount
         determinePhase(amount?.data);
       } catch (error) {
         console.error("Error fetching stake amount:", error);
       }
     };
+    console.log({stakeAmount})
 
     fetchStakeAmount();
   }, [apiEndpoint]);
@@ -91,10 +91,9 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
         break;
       default:
         // If amount exceeds all phases, use the highest phase
-        phase = 3;
-        goal = phaseGoals[3];
+        phase = 8;
+        goal = phaseGoals[8];
     }
-
     setCurrentPhase(phase);
     setPhaseGoal(goal);
   };
@@ -167,7 +166,7 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
           fontSize="10"
           fill={color}
         >
-          Phase {currentPhase}: {formatAmount(phaseGoal)}
+          Phase {currentPhase} : {formatAmount(phaseGoal)}
         </text>
 
         {/* Progress percentage */}
