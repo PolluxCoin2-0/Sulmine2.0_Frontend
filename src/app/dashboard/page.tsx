@@ -646,10 +646,10 @@ const DashBoard: React.FC = () => {
   <div className="space-y-4 md:space-y-[12px] flex flex-col justify-between">
     {[{ value: userDetails?.pool1Reward, text: "Silver Pool", gradient: "bg-silver-pool", imagePath: SilverPool, isEligible: userDetails?.eligiblePool1 },
       { value: userDetails?.pool2Reward, text: "Gold Pool", gradient: "bg-gold-pool", imagePath: GoldPool, isEligible: userDetails?.eligiblePool2 },
-      { value: userDetails?.pool3Reward, text: "Platinum Pool", gradient: "bg-platinum-pool", imagePath: PlatinumPool, isEligible: userDetails?.eligiblePool3},
-      { value: userDetails?.pool4Reward, text: "Diamond Pool", gradient: "bg-diamond-pool", imagePath: DiamondPool, isEligible: userDetails?.eligiblePool4},
-      { value: userDetails?.pool5Reward, text: "Crown Diamond Pool", gradient: "bg-crown-diamond-pool", imagePath: CrownDiamondPool, isEligible: userDetails?.eligiblePool5},
-      { value: userDetails?.pool6Reward, text: "Emerald Pool", gradient: "bg-gold-pool", imagePath: GoldPool, isEligible: userDetails?.eligiblePool6 },
+      { value: userDetails?.pool3Reward, text: "Emerald Pool", gradient: "bg-platinum-pool", imagePath: PlatinumPool, isEligible: userDetails?.eligiblePool3},
+      { value: userDetails?.pool4Reward, text: "Platinum  Pool", gradient: "bg-diamond-pool", imagePath: DiamondPool, isEligible: userDetails?.eligiblePool4},
+      { value: userDetails?.pool5Reward, text: "Diamond Pool", gradient: "bg-crown-diamond-pool", imagePath: CrownDiamondPool, isEligible: userDetails?.eligiblePool5},
+      { value: userDetails?.pool6Reward, text: "Crown Diamond Pool", gradient: "bg-gold-pool", imagePath: GoldPool, isEligible: userDetails?.eligiblePool6 },
       { value: userDetails?.pool7Reward, text: "Titanium Pool", gradient: "bg-platinum-pool", imagePath: PlatinumPool, isEligible: userDetails?.eligiblePool7},
       { value: userDetails?.pool8Reward, text: "Palladium Pool", gradient: "bg-diamond-pool", imagePath: DiamondPool, isEligible: userDetails?.eligiblePool8},
     ]

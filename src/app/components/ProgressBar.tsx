@@ -12,7 +12,7 @@ interface CircleProgressProps {
 }
 
 const CircleProgress: React.FC<CircleProgressProps> = ({
-  size = 260,
+  size = 300,
   strokeWidth = 6,
   color = "#8A3AB0",
   bgColor = "#ffffff",
@@ -108,19 +108,31 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
   const progress = Math.min(stakeAmount / phaseGoal, 1);
   const strokeDashoffset = circumference * (1 - progress);
 
-  // Improved format function to handle small values
+  // Improved format function to handle small values showing like 3.0L, 5.0L and so on
+  // const formatAmount = (amount: number) => {
+  //   if (amount >= 100000) {
+  //     // For values >= 1 Lakh, show in Lakh format
+  //     return `${(amount / 100000).toFixed(1)}L`;
+  //   } else if (amount >= 1000) {
+  //     // For values >= 1,000, show in K format
+  //     return `${(amount / 1000).toFixed(1)}K`;
+  //   } else {
+  //     // For smaller values, show the actual number
+  //     return amount.toString();
+  //   }
+  // };
+  
+   // Improved format function to handle small values showing like 300k SUL, 500K SUL and so on
   const formatAmount = (amount: number) => {
-    if (amount >= 100000) {
-      // For values >= 1 Lakh, show in Lakh format
-      return `${(amount / 100000).toFixed(1)}L`;
+    if (amount >= 1000000) {
+      return `${(amount / 1000000).toFixed(1).replace(/\.0$/, "")}M SUL`;
     } else if (amount >= 1000) {
-      // For values >= 1,000, show in K format
-      return `${(amount / 1000).toFixed(1)}K`;
+      return `${(amount / 1000).toFixed(0)}K SUL`;
     } else {
-      // For smaller values, show the actual number
-      return amount.toString();
+      return `${amount} SUL`;
     }
   };
+  
 
   return (
     <div style={{ width: size, height: size }} className="relative">
@@ -167,7 +179,7 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
           y="52"
           textAnchor="middle"
           dominantBaseline="central"
-          fontSize="10"
+          fontSize="8"
           fill={color}
         >
           Phase {currentPhase} : {formatAmount(phaseGoal)}
@@ -176,13 +188,15 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
         {/* Progress percentage */}
         <text
           x="50"
-          y="64"
+          y="68"
           textAnchor="middle"
           dominantBaseline="central"
-          fontSize="10"
+          fontSize="7"
           fill={bgColor}
         >
-          {Math.round(progress * 100)}% Complete
+          {/* {Math.round(progress * 100)}% Complete */}
+          {(progress * 100).toFixed(2)}% Complete
+
         </text>
       </svg>
     </div>
