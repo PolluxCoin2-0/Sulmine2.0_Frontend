@@ -25,14 +25,14 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
   // Phase configurations
   const phaseGoals = {
     1: 300000, // 3 Lakh
-    2: 500000, // 6 Lakh
-    3: 700000, // 9 Lakh
+    2: 500000, // 5 Lakh
+    3: 700000, // 7 Lakh
     4: 900000  , // 9 Lakh
-    5: 1100000, // 9 Lakh
-    6: 1300000 , // 9 Lakh
-    7: 1500000, // 9 Lakh
-    8: 1700000, // 9 Lakh
-    9:  1900000, 
+    5: 1100000, // 11 Lakh
+    6: 1300000 , // 13 Lakh
+    7: 1500000, // 15 Lakh
+    8: 1700000, // 17 Lakh
+    9: 1900000, // 19 Lakh
   };
 
   useEffect(() => {
