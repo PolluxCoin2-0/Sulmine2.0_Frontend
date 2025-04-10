@@ -84,7 +84,7 @@ const DashBoard: React.FC = () => {
         getAllUserCountWeb2Api(),
         getDirectBonusApi(walletAddress),
         getCappingAmountApi(walletAddress),
-        getBalanceApi("PSbkGuxzHCFfDkTM44MouQF52rFs93rayU"),
+        getBalanceApi("PUneMiLWZztahJp1LSnyPGTf6McBgfgUNQ"),
         getTotalStakeLengthFromWeb3(walletAddress),
         getInitialReturn(walletAddress)
       ]);
@@ -93,7 +93,6 @@ const DashBoard: React.FC = () => {
       setUserDetails(userDetailsApiData?.data);
       setReferralAmount(referralRewardAPiData?.data);
 
-      console.log("staked array", stakesDataArray)
       const updatedStakes = stakesDataArray?.transactions.map(
         (item: TransactionInterface) => ({
           ...item,
@@ -109,6 +108,7 @@ const DashBoard: React.FC = () => {
       setContractAmount(sulAmountData?.data);
       setTotalStakeLengthFromWeb3(totalStakeLengthFromWeb3Data?.data)
       setInitialReturnAmount(initialReturnData?.data)
+      console.log("sulamonu", sulAmountData)
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally{
@@ -442,6 +442,7 @@ const DashBoard: React.FC = () => {
       setIsMintLoading(false);
     }
   }
+
 
   const handleReferralLinkCopy = () => {
     if (userStateData?.dataObject?.walletAddress) {
