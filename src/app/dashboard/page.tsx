@@ -31,7 +31,7 @@ import FetchTime from "./FetchTime";
 const DashBoard: React.FC = () => {
   const router = useRouter();
   const userStateData = useSelector((state: RootState)=>state?.wallet);
-  console.log({ userStateData });
+
   const [isComponentLoading, setComponentLoading] = useState <boolean>(false);
   const [isStakeLoading, setIsStakeLoading] = useState <boolean>(false);
   const [isClaimLoading, setIsClaimLoading] = useState <boolean>(false);
@@ -64,9 +64,9 @@ const DashBoard: React.FC = () => {
       const [
         userDetailsApiData,
         referralRewardAPiData,
-        // stakesDataArray,
+        stakesDataArray,
         claimRewardApiData,
-        // userCountDataApi,
+        userCountDataApi,
         bonusData,
         cappingAmountData,
         sulAmountData,
@@ -75,9 +75,9 @@ const DashBoard: React.FC = () => {
       ] = await Promise.all([
         getUserDetailsApi(walletAddress),
         referralRewardApi(walletAddress),
-        // userAllStakesApi(token),
+        userAllStakesApi(token),
         claimRewardAmountApi(walletAddress),
-        // getAllUserCountWeb2Api(),
+        getAllUserCountWeb2Api(),
         getDirectBonusApi(walletAddress),
         getCappingAmountApi(walletAddress),
         getBalanceApi("PNKDNUiXnjXm1FAeuBhuobnyvHHR1hYdvj"),
@@ -89,16 +89,17 @@ const DashBoard: React.FC = () => {
       setUserDetails(userDetailsApiData?.data);
       setReferralAmount(referralRewardAPiData?.data);
 
-      // const updatedStakes = stakesDataArray.data.transactions.map(
-      //   (item: TransactionInterface) => ({
-      //     ...item,
-      //     isLoading: false,
-      //   })
-      // );
-      // setStakedArray(updatedStakes);
+      console.log("staked array", stakesDataArray)
+      const updatedStakes = stakesDataArray?.transactions.map(
+        (item: TransactionInterface) => ({
+          ...item,
+          isLoading: false,
+        })
+      );
+      setStakedArray(updatedStakes);
 
       setClaimRewardAmount(claimRewardApiData?.data);
-      // setAllUserCount(userCountDataApi?.data);
+      setAllUserCount(userCountDataApi?.data);
       setDirectBonus(bonusData?.data);
       setCappingAmount(cappingAmountData?.data);
       setContractAmount(sulAmountData?.data);
@@ -110,12 +111,6 @@ const DashBoard: React.FC = () => {
       setComponentLoading(false);
     }
   }
-  
-  console.log({claimRewardAmount})
-  console.log({referralAmount})
-  console.log({directBonus})
-  console.log({userDetails})
-  console.log({stakedArray})
   
   if(!userStateData?.isLogin){
    router.push("/");
@@ -392,7 +387,7 @@ const DashBoard: React.FC = () => {
         userStateData?.dataObject?.token as string)
         console.log({web2MintApiData})
 
-        if(web2MintApiData?.statusCode!==200){
+        if(!web2MintApiData){
           throw new Error("Save to DB Web2 Api Failed transaction");
         }
 

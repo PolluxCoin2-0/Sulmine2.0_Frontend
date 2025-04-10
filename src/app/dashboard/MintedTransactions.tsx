@@ -9,7 +9,6 @@ import ShimmerEffect from "../components/ShimmerEffect";
 
 const MintedTransactions: React.FC = () => {
   const userStateData = useSelector((state: RootState)=>state?.wallet);
-  console.log({userStateData});
   const [isComponentLoading, setComponentLoading] = useState <boolean>(false);
   const [currentMintTrxPage, setCurrentMintTrxPage] = useState<number>(1);
   const [mintTrxDataArray, setMintTrxDataArray] = useState<MintTransactionDataInterface | null>(null);
@@ -24,7 +23,6 @@ const MintedTransactions: React.FC = () => {
     setComponentLoading(true);
     // GET ALL MINT TRANSACTIONS DATA WEB2
     const allMintTrxWeb2ApiData = await allMintTransactionWeb2Api(userStateData?.dataObject?.token as string, currentMintTrxPage);
-    console.log("mint transactions",allMintTrxWeb2ApiData);
     setMintTrxDataArray(allMintTrxWeb2ApiData)
     setComponentLoading(false);
   }

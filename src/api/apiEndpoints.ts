@@ -20,6 +20,7 @@ const API_ENDPOINTS = {
       getUserStakes : "/getUserStakes",
       getStakeLength :"/getStakeLength",
       getInitialReturn : "/getInitialReturn",
+      getCurrentStakedAmount: "/getCurrentStakedAmount",
     },
     web2:{
       createStake:"/createStake",

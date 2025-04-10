@@ -216,3 +216,10 @@ export const mainnetUserMainnetResourceApi = async (walletAddress: string):Promi
     throw new Error("Failed to broadcast transaction.");
   }
 };
+
+
+
+/********************GET_STAKE_AMOUNT **********************************************/
+export const getStakeAmountApi = async (): Promise<stakeLength> => {
+  return getRequest<stakeLength>(API_ENDPOINTS.user.getCurrentStakedAmount);
+}
