@@ -39,7 +39,6 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
     const fetchStakeAmount = async () => {
       try {
         const amount = await getStakeAmountApi();
-
         setStakeAmount(amount?.data);
         // Determine phase based on amount
         determinePhase(amount?.data);
