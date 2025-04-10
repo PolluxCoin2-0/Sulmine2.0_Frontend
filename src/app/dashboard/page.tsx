@@ -84,7 +84,7 @@ const DashBoard: React.FC = () => {
         getAllUserCountWeb2Api(),
         getDirectBonusApi(walletAddress),
         getCappingAmountApi(walletAddress),
-        getBalanceApi("PX5rvwcw8QRstG4VRJV8zTs2umgpK84JEM"),
+        getBalanceApi("PMLehxcThfypWV79uGiPYCduVdTkajZu7m"),
         getTotalStakeLengthFromWeb3(walletAddress),
         getInitialReturn(walletAddress)
       ]);
