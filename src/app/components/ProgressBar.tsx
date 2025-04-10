@@ -151,11 +151,11 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
           y="40"
           textAnchor="middle"
           dominantBaseline="central"
-          fontSize="12"
+          fontSize="10"
           fill={color}
           fontWeight="bold"
         >
-          {formatAmount(stakeAmount)}
+          {stakeAmount ? stakeAmount.toLocaleString() : "0"} SUL
         </text>
 
         {/* Phase information */}
