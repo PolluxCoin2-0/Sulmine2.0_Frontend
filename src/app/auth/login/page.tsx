@@ -55,6 +55,7 @@ const Login: React.FC = () => {
 
       await proceedWithLogin(userWalletAddress);
     } catch (error) {
+      console.log(error);
       toast.error("Invalid wallet address or login failed.");
     } finally {
       setIsLoading(false);
@@ -71,6 +72,7 @@ const Login: React.FC = () => {
       toast.success("Login successful");
       router.push("/dashboard");
     } catch (error) {
+      console.log(error);
       toast.error("Login failed.");
     }
   };
