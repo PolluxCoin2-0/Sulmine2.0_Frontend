@@ -2,11 +2,14 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Bonus from "@/assests/Bonus.svg";
-import SilverPool from "@/assests/SilverPool.svg";
-import GoldPool from "@/assests/GoldPool.svg";
-import PlatinumPool from "@/assests/Platnium Pool.svg";
-import DiamondPool from "@/assests/Diamond Pool.svg";
-import CrownDiamondPool from "@/assests/CrownDiamondPool.svg";
+import SilverPool from "@/assests/silver.png";
+import GoldPool from "@/assests/gold.png";
+import EmeraldPool from "@/assests/emerald.png";
+import PlatinumPool from "@/assests/platinum.png";
+import DiamondPool from "@/assests/diamong.png";
+import CrownDiamondPool from "@/assests/crownDiamong.png";
+import titaniumPool from "@/assests/titanium.png";
+import palladiumPool from "@/assests/palladium.png";
 import SUL from "@/assests/SUL.svg";
 import StakeImg from "@/assests/Stake.svg";
 import Mint from "@/assests/Mint.svg";
@@ -646,12 +649,12 @@ const DashBoard: React.FC = () => {
   <div className="space-y-4 md:space-y-[12px] flex flex-col justify-between">
     {[{ value: userDetails?.pool1Reward, text: "Silver Pool", gradient: "bg-silver-pool", imagePath: SilverPool, isEligible: userDetails?.eligiblePool1 },
       { value: userDetails?.pool2Reward, text: "Gold Pool", gradient: "bg-gold-pool", imagePath: GoldPool, isEligible: userDetails?.eligiblePool2 },
-      { value: userDetails?.pool3Reward, text: "Emerald Pool", gradient: "bg-platinum-pool", imagePath: PlatinumPool, isEligible: userDetails?.eligiblePool3},
-      { value: userDetails?.pool4Reward, text: "Platinum  Pool", gradient: "bg-diamond-pool", imagePath: DiamondPool, isEligible: userDetails?.eligiblePool4},
-      { value: userDetails?.pool5Reward, text: "Diamond Pool", gradient: "bg-crown-diamond-pool", imagePath: CrownDiamondPool, isEligible: userDetails?.eligiblePool5},
-      { value: userDetails?.pool6Reward, text: "Crown Diamond Pool", gradient: "bg-gold-pool", imagePath: GoldPool, isEligible: userDetails?.eligiblePool6 },
-      { value: userDetails?.pool7Reward, text: "Titanium Pool", gradient: "bg-platinum-pool", imagePath: PlatinumPool, isEligible: userDetails?.eligiblePool7},
-      { value: userDetails?.pool8Reward, text: "Palladium Pool", gradient: "bg-diamond-pool", imagePath: DiamondPool, isEligible: userDetails?.eligiblePool8},
+      { value: userDetails?.pool3Reward, text: "Emerald Pool", gradient: "bg-platinum-pool", imagePath: EmeraldPool, isEligible: userDetails?.eligiblePool3},
+      { value: userDetails?.pool4Reward, text: "Platinum  Pool", gradient: "bg-diamond-pool", imagePath: PlatinumPool, isEligible: userDetails?.eligiblePool4},
+      { value: userDetails?.pool5Reward, text: "Diamond Pool", gradient: "bg-crown-diamond-pool", imagePath: DiamondPool, isEligible: userDetails?.eligiblePool5},
+      { value: userDetails?.pool6Reward, text: "Crown Diamond Pool", gradient: "bg-gold-pool", imagePath: CrownDiamondPool, isEligible: userDetails?.eligiblePool6 },
+      { value: userDetails?.pool7Reward, text: "Titanium Pool", gradient: "bg-platinum-pool", imagePath: titaniumPool, isEligible: userDetails?.eligiblePool7},
+      { value: userDetails?.pool8Reward, text: "Palladium Pool", gradient: "bg-diamond-pool", imagePath: palladiumPool, isEligible: userDetails?.eligiblePool8},
     ]
       .map(({ value, text, gradient, imagePath, isEligible }, idx) => (
         <div
