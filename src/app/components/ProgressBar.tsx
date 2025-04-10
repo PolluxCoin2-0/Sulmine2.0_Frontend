@@ -30,9 +30,6 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
     4: 900000  , // 9 Lakh
     5: 1100000, // 11 Lakh
     6: 1300000 , // 13 Lakh
-    7: 1500000, // 15 Lakh
-    8: 1700000, // 17 Lakh
-    9: 1900000, // 19 Lakh
   };
 
   useEffect(() => {
@@ -81,22 +78,10 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
         phase = 6;
         goal = phaseGoals[6];
         break;
-      case amount < phaseGoals[7]:
-        phase = 7;
-        goal = phaseGoals[7];
-        break;
-      case amount < phaseGoals[8]:
-        phase = 8;
-        goal = phaseGoals[8];
-        break;
-        case amount < phaseGoals[9]:
-          phase = 9;
-          goal = phaseGoals[9];
-          break;
       default:
         // If amount exceeds all phases, use the highest phase
-        phase = 9;
-        goal = phaseGoals[9];
+        phase = 6;
+        goal = phaseGoals[6];
     }
     setCurrentPhase(phase);
     setPhaseGoal(goal);

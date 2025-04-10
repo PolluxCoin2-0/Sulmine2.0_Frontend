@@ -81,7 +81,7 @@ const DashBoard: React.FC = () => {
         getAllUserCountWeb2Api(),
         getDirectBonusApi(walletAddress),
         getCappingAmountApi(walletAddress),
-        getBalanceApi("PBxQs7Pw64Jqdp4Vh5oftemqrduWqmTn1X"),
+        getBalanceApi("PLrtYuAoDZCLoCxycAb76r6w5w8x2ZUW8f"),
         getTotalStakeLengthFromWeb3(walletAddress),
         getInitialReturn(walletAddress)
       ]);
@@ -462,7 +462,7 @@ const DashBoard: React.FC = () => {
         {/* Referral Link Section */}
       <div
         className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
-         py-[18px] px-4 lg:px-8 rounded-xl flex justify-between items-center"
+         py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="hidden xl:block text-white font-bold text-base truncate">
           Referral link: <span className="font-normal">
@@ -494,7 +494,7 @@ const DashBoard: React.FC = () => {
       {/* CAPPING */}
       <div
         className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
-         py-[18px] px-4 lg:px-8 rounded-xl flex justify-between items-center"
+         py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="text-white font-bold text-base truncate">
         Capping :
@@ -505,7 +505,7 @@ const DashBoard: React.FC = () => {
       {/* TOTAL USER */}
       <div
         className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
-         py-[18px] px-4 lg:px-8 rounded-xl flex justify-between items-center"
+         py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="text-white font-bold text-base truncate">
         Total Users / Total Staked :
@@ -516,7 +516,7 @@ const DashBoard: React.FC = () => {
       {/* Initial Return */}
       <div
         className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
-         py-[18px] px-4 lg:px-8 rounded-xl flex justify-between items-center"
+         py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="text-white font-bold text-base truncate">
         Initial Return :
