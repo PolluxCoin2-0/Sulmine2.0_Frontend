@@ -47,7 +47,8 @@ const DashBoard: React.FC = () => {
   const [contractAmount, setContractAmount] = useState<number>(0);
   const [totalStakeLengthFromWeb3, setTotalStakeLengthFromWeb3] = useState<number>(0);
   const [initialReturnAmount, setInitialReturnAmount] = useState<number>(0);
-
+  
+  console.log({stakedArray});
   useEffect(()=>{
     if(userStateData?.isLogin){
      fetchData();
