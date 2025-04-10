@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import Logo from "@/assests/LogoWithText.svg";
+import Logo from "@/assests/Logo1.svg";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";

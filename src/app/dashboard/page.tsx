@@ -576,17 +576,18 @@ const DashBoard: React.FC = () => {
       <div className="border border-black bg-gradient-to-r from-[rgba(138,34,179,0.34)] via-[rgba(43,37,90,0.25)] to-[rgba(105,26,139,0.44)] rounded-xl px-6 md:px-8 py-8 md:py-10 flex flex-col justify-between">
         <p className="text-white font-bold text-2xl md:text-3xl">STAKE TOKEN</p>
         <div className="grid grid-cols-[70%,26%] gap-4 my-8 pb-10 border-b border-gray-400 border-opacity-30">
-          <div className="rounded-xl border border-gray-400 border-opacity-30 bg-sul-background px-5 md:px-5 py-5">
-          <input
-          value={stakeAmount}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setStakeAmount(e.target.value)
-          }
-          className="w-full h-full rounded-xl bg-transparent outline-none placeholder:text-gray-300 text-white"
-          type="number"
-           placeholder="Enter Amount"
-           />
-          </div>
+        <div className="rounded-xl border border-gray-400 border-opacity-30 bg-sul-background px-5 md:px-5 py-5 focus-within:border-gray-200 transition-colors duration-300">
+  <input
+    value={stakeAmount}
+    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+      setStakeAmount(e.target.value)
+    }
+    className="w-full h-full rounded-xl bg-transparent outline-none placeholder:text-gray-300 text-white"
+    type="number"
+    placeholder="Enter Amount"
+  />
+</div>
+
           <div className="flex flex-col items-center justify-center bg-sul-background rounded-xl border border-gray-400 border-opacity-30">
             <Image src={SUL} alt="sul-image" height={0} width={0} className="w-[20%] md:w-[25%] pt-1" priority />
             <p className="text-white font-medium text-sm md:text-base pt-1">SUL</p>
