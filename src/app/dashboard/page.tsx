@@ -465,7 +465,7 @@ const DashBoard: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {/* Referral Link Section */}
       <div
-        className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
+        className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900
          py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="hidden xl:block text-white font-bold text-base truncate">
@@ -497,7 +497,7 @@ const DashBoard: React.FC = () => {
 
       {/* CAPPING */}
       <div
-        className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
+        className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900
          py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="text-white font-bold text-base truncate">
@@ -508,7 +508,7 @@ const DashBoard: React.FC = () => {
 
       {/* TOTAL USER */}
       <div
-        className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
+        className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900
          py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="text-white font-bold text-base truncate">
@@ -519,7 +519,7 @@ const DashBoard: React.FC = () => {
 
       {/* Initial Return */}
       <div
-        className="bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
+        className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900
          py-[18px] px-4 rounded-xl flex justify-between items-center"
       >
         <p className="text-white font-bold text-base truncate">
@@ -543,7 +543,7 @@ const DashBoard: React.FC = () => {
         .map(({ value, text, icon, button }, idx) => (
           <div
             key={idx}
-            className="bg-gradient-to-b from-[rgba(43,37,90,0.67)] to-[rgba(200,200,200,0.67)] px-6 py-3 rounded-xl flex flex-row justify-between items-center"
+            className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900 px-6 py-3 rounded-xl flex flex-row justify-between items-center"
           >
             <div className="flex flex-col space-y-0 justify-start">
               <span className="text-2xl md:text-3xl font-bold text-white">
@@ -573,40 +573,40 @@ const DashBoard: React.FC = () => {
     <div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Stake Token Section */}
-      <div className="border border-black bg-gradient-to-r from-[rgba(138,34,179,0.34)] via-[rgba(43,37,90,0.25)] to-[rgba(105,26,139,0.44)] rounded-xl px-6 md:px-8 py-8 md:py-10 flex flex-col justify-between">
+      <div className="border border-black bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900 rounded-xl px-6 md:px-8 py-8 md:py-10 flex flex-col justify-between">
         <p className="text-white font-bold text-2xl md:text-3xl">STAKE TOKEN</p>
         <div className="grid grid-cols-[70%,26%] gap-4 my-8 pb-10 border-b border-gray-400 border-opacity-30">
-        <div className="rounded-xl border border-gray-400 border-opacity-30 bg-sul-background px-5 md:px-5 py-5 focus-within:border-gray-200 transition-colors duration-300">
+        <div className="rounded-xl border border-gray-400 border-opacity-30 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900 px-5 md:px-5 py-5 focus-within:border-gray-200 transition-colors duration-300">
   <input
     value={stakeAmount}
     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
       setStakeAmount(e.target.value)
     }
-    className="w-full h-full rounded-xl bg-transparent outline-none placeholder:text-gray-300 text-white"
+    className="w-full h-full rounded-xl bg-transparent outline-none placeholder:text-gray-200 text-white"
     type="number"
     placeholder="Enter Amount"
   />
 </div>
 
-          <div className="flex flex-col items-center justify-center bg-sul-background rounded-xl border border-gray-400 border-opacity-30">
+          <div className="flex flex-col items-center justify-center bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900 rounded-xl border border-gray-400 border-opacity-30">
             <Image src={SUL} alt="sul-image" height={0} width={0} className="w-[20%] md:w-[25%] pt-1" priority />
             <p className="text-white font-medium text-sm md:text-base pt-1">SUL</p>
           </div>
         </div>
         {
-          isStakeLoading?   <div className="w-full rounded-xl flex justify-center bg-gradient-to-r from-[rgba(137,34,179,0.7)] via-[rgba(90,100,214,0.7)] to-[rgba(185,77,228,0.7)] ">
+          isStakeLoading?   <div className="w-full rounded-xl flex justify-center bg-gradient-to-r from-gray-400 via-gray-300 to-gray-500 ">
           <Loader />
         </div> : 
         <button
         onClick={handleStakeFunc}
-        className="mt-1 w-full bg-gradient-to-r from-[rgba(137,34,179,0.7)] via-[rgba(90,100,214,0.7)] to-[rgba(185,77,228,0.7)] text-white text-lg md:text-2xl font-semibold px-6 py-3 md:py-4 rounded-2xl transform hover:scale-105 transition-transform delay-200">
+        className="mt-1 w-full bg-gradient-to-r from-gray-400 via-gray-300 to-gray-500 text-black text-lg md:text-2xl font-bold px-6 py-3 md:py-4 rounded-2xl transform hover:scale-105 transition-transform delay-200">
           STAKE
         </button>
         }
       </div>
 
       {/* Claim Token Section */}
-      <div className="border border-black bg-gradient-to-r from-[rgba(138,34,179,0.34)] via-[rgba(43,37,90,0.25)] to-[rgba(105,26,139,0.44)] rounded-xl px-6 md:px-8 py-8 md:py-10 flex flex-col justify-between">
+      <div className="border border-black bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900 rounded-xl px-6 md:px-8 py-8 md:py-10 flex flex-col justify-between">
         <div className="flex justify-between items-center">
           <p className="text-white font-bold text-2xl md:text-3xl">CLAIM TOKEN</p>
           <div className="flex items-center space-x-1 cursor-pointer">
@@ -617,22 +617,22 @@ const DashBoard: React.FC = () => {
           </div>
         </div>
         <div className="grid grid-cols-[70%,26%] gap-4 my-8 pb-10 border-b border-gray-400 border-opacity-30">
-          <div className="rounded-xl border border-gray-400 border-opacity-30 bg-sul-background px-5 md:px-7 py-3">
+          <div className="rounded-xl border border-gray-400 border-opacity-30 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900 px-5 md:px-7 py-3">
             <p className="text-white font-semibold text-xl md:text-2xl">{claimRewardAmount}</p>
-            <p className="text-[#DFDFDF] text-sm opacity-70">Reward</p>
+            <p className="text-gray-200 text-sm">Reward</p>
           </div>
-          <div className="flex flex-col items-center justify-center bg-sul-background rounded-xl border border-gray-400 border-opacity-30">
+          <div className="flex flex-col items-center justify-center bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900 rounded-xl border border-gray-400 border-opacity-30">
             <Image src={SUL} alt="sul-image" height={0} width={0} className="w-[20%] md:w-[25%] pt-1" priority />
             <p className="text-white font-medium text-sm md:text-base pt-1">SUL</p>
           </div>
         </div>
         {
-          isClaimLoading ?   <div className="w-full rounded-xl flex justify-center bg-gradient-to-r from-[rgba(137,34,179,0.7)] via-[rgba(90,100,214,0.7)] to-[rgba(185,77,228,0.7)] ">
+          isClaimLoading ? <div className="w-full rounded-xl flex justify-center bg-gradient-to-r from-gray-400 via-gray-300 to-gray-500 ">
           <Loader />
         </div> :
         <button
         onClick={handleClaimRewardFunc}
-        className="mt-1 w-full bg-gradient-to-r from-[rgba(137,34,179,0.7)] via-[rgba(90,100,214,0.7)] to-[rgba(185,77,228,0.7)] text-white text-lg md:text-2xl font-semibold px-6 py-3 md:py-4 rounded-2xl transform hover:scale-105 transition-transform delay-200">
+        className="mt-1 w-full bg-gradient-to-r from-gray-400 via-gray-300 to-gray-500 text-black text-lg md:text-2xl font-bold px-6 py-3 md:py-4 rounded-2xl transform hover:scale-105 transition-transform delay-200">
           CLAIM REWARD
         </button>
         }
@@ -640,7 +640,7 @@ const DashBoard: React.FC = () => {
     </div>
 
     {/* circular timeline */}
-    <div className="flex justify-center items-center mt-6 bg-[linear-gradient(90.11deg,rgba(137,34,179,0.264)_0.11%,rgba(43,37,90,0.1782)_47.67%,rgba(105,26,139,0.264)_99.92%)]
+    <div className="flex justify-center items-center mt-6 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900
          py-[18px] px-4 lg:px-8 rounded-xl ">
       <ProgressBar/>
     </div>
@@ -681,9 +681,9 @@ const DashBoard: React.FC = () => {
       </div>
        
       {/* Mint Table */}
-      <div className="bg-gradient-to-b from-[rgba(43,37,90,0.34)] to-[rgba(200,200,200,0.09)] rounded-xl border-gray-400 border-[1px] border-opacity-30 p-4 my-4 w-full overflow-x-auto">
+      <div className="bg-gradient-to-br from-gray-400/50 to-gray-400/30 rounded-xl border-gray-400 border-[1px] border-opacity-30 p-4 my-4 w-full overflow-x-auto">
   {/* Header Section */}
-  <div className="bg-[#212D49] rounded-xl text-white flex flex-row items-center justify-between py-2 min-w-[850px] md:min-w-0">
+  <div className="bg-gray-800 rounded-xl text-white flex flex-row items-center justify-between py-2 min-w-[850px] md:min-w-0">
     <p className="font-bold px-8 py-2 w-[20%] text-left">Amount / InitialReturn</p>
     <p className="font-bold px-4 py-2 w-[20%] text-center">Maturity Days</p>
     <p className="font-bold px-8 py-2 w-[20%] text-center">Deposit Phase</p>

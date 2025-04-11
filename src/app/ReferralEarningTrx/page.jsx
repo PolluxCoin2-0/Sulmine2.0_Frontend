@@ -28,9 +28,9 @@ const ReferralEarnings = () => {
     
       setReferralEarnings(userReferralTreeData);
 
-      const downlineBusinessAmountData = await getDownlineBusinessFund( userStateData?.dataObject?.walletAddress);
-      setDownlineBussinessAmount(downlineBusinessAmountData?.data?.totalDownlineFunds);
-      console.log("dfhdhfhhdhfhdhfhdhh", downlineBusinessAmountData?.data?.totalDownlineFunds)
+      const downlineBusinessAmountData = await getDownlineBusinessFund(userStateData?.dataObject?.walletAddress);
+      setDownlineBussinessAmount(downlineBusinessAmountData?.totalDownlineFunds);
+      console.log("dfhdhfhhdhfhdhfhdhh", downlineBusinessAmountData?.totalDownlineFunds)
     } catch (error) {
       console.error("Error fetching referral data:", error);
       setReferralEarnings(null);
@@ -51,9 +51,9 @@ const ReferralEarnings = () => {
 
   return (
     <div className="min-h-screen bg-black px-2 md:px-6 py-8">
-      <div className="bg-gradient-to-b from-[rgba(43,37,90,0.34)] to-[rgba(200,200,200,0.09)] px-2 pt-6 md:px-6 rounded-xl">
+     <div className="bg-gradient-to-br from-gray-400/50 to-gray-400/30 px-4 py-6 md:px-8 rounded-2xl shadow-lg">
         {/* Total Balance */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between text-gray-300">
+        <div className="flex flex-col md:flex-row md:items-center justify-between text-gray-200">
           <p className="text-sm md:text-lg font-bold mb-4">
             Wallet Address: {userStateData?.dataObject?.walletAddress || "N/A"}
           </p>
@@ -71,7 +71,7 @@ const ReferralEarnings = () => {
           ) : referralEarnings?.data? (
             <table className="w-full text-white text-sm border-separate border-spacing-y-2">
               <thead>
-                <tr className="bg-[#212D49] rounded-md text-xs md:text-base">
+                <tr className="bg-gray-800 rounded-md text-xs md:text-base">
                   <th className="p-3 pl-8 text-left rounded-l-md">Level</th>
                   <th className="p-3 text-center">Total Wallets</th>
                   <th className="p-3 text-center">Total Investments</th>
@@ -94,9 +94,9 @@ const ReferralEarnings = () => {
                         <tr
                           className={`${
                             index % 2 === 0
-                              ? "bg-[#2B255A] bg-opacity-10"
-                              : "bg-[#2B255A] bg-opacity-30"
-                          } rounded-md hover:bg-[#2B255A] transition duration-300`}
+                              ? "bg-gray-800/50"
+                              : "bg-gray-800/80"
+                          } hover:bg-[#2B255A]/50 t ransition duration-300 rounded-lg`}
                         >
                           <td className="p-3 pl-8 text-xs md:text-sm rounded-l-md">
                             {level}
@@ -123,12 +123,12 @@ const ReferralEarnings = () => {
                           <tr>
                             <td
                               colSpan={4}
-                              className="p-4 bg-[#1A1A2E] rounded-md"
+                              className="p-4 bg-gray-800/90 rounded-md"
                             >
                               <div className="overflow-x-auto">
                                 <table className="w-full text-gray-300 text-xs md:text-sm">
                                   <thead>
-                                    <tr className="bg-[#212D49] rounded-md text-base">
+                                    <tr className="bg-gray-700 rounded-md text-base">
                                       <th className="p-2 pl-6 text-left rounded-l-md">
                                         Sr. No
                                       </th>
@@ -150,7 +150,7 @@ const ReferralEarnings = () => {
                                     {referrals.map((referral, index) => (
                                       <tr
                                         key={index}
-                                        className="hover:bg-[#2B255A] transition duration-300"
+                                        className="hover:bg-[#2B255A]/40 transition duration-300"
                                       >
                                         <td className="p-2 pl-6">
                                           {index + 1}

@@ -53,7 +53,7 @@ const FetchTime = ({ userStateData, index, buttonClick }) => {
       </p>
       <div className="lg:w-[20%] px-4 flex justify-end">
         {isLoading ? (
-          <div className="w-full lg:w-[50%] rounded-xl flex justify-center bg-gradient-to-r from-[rgba(137,34,179,0.7)] via-[rgba(90,100,214,0.7)] to-[rgba(185,77,228,0.7)]">
+          <div className="w-full lg:w-[50%] rounded-xl flex justify-center bg-gradient-to-r from-gray-400 via-gray-300">
             <Loader />
           </div>
         ) : (
@@ -62,7 +62,7 @@ const FetchTime = ({ userStateData, index, buttonClick }) => {
             onClick={handleButtonClick}
             className={`w-full lg:w-[50%]
            
-             bg-gradient-to-r from-[rgba(137,34,179,0.7)] via-[rgba(90,100,214,0.7)] to-[rgba(185,77,228,0.7)]
+             bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900
             
       text-white text-lg font-semibold px-4 py-2 rounded-xl transform hover:scale-105 transition delay-300`}
           >

@@ -32,9 +32,9 @@ const MintedTransactions: React.FC = () => {
   }
 
   return (
-    <div className="bg-gradient-to-b from-[rgba(43,37,90,0.34)] to-[rgba(200,200,200,0.09)] rounded-xl border border-gray-400 border-opacity-30 p-4 w-full overflow-x-auto">
+    <div className="bg-gradient-to-br from-gray-400/50 to-gray-400/30 rounded-xl border border-gray-400 border-opacity-30 p-4 w-full overflow-x-auto">
       {/* Table Header */}
-      <div className="bg-[#212D49] rounded-xl text-white flex flex-row items-center justify-between py-2 min-w-[850px] md:min-w-0">
+      <div className="bg-gray-800 rounded-xl text-white flex flex-row items-center justify-between py-2 min-w-[850px] md:min-w-0">
         <p className="font-bold px-8 py-2 w-[50%] text-left">Transaction</p>
         <p className="font-bold px-4 py-2 w-[25%] text-center">Mint Time</p>
         <p className="font-bold px-8 py-2 w-[25%] text-right">Amount</p>
