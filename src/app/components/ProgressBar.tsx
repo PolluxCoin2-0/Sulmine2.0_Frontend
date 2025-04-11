@@ -14,7 +14,6 @@ interface CircleProgressProps {
 const CircleProgress: React.FC<CircleProgressProps> = ({
   size = 300,
   strokeWidth = 6,
-  color = "#8A3AB0",
   bgColor = "#ffffff",
   apiEndpoint = "/api/getStakeAmount", // Default API endpoint
 }) => {
