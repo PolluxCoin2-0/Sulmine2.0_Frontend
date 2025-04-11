@@ -290,16 +290,18 @@ const DashBoard: React.FC = () => {
         ((userResourceDetails?.freeNetUsed ?? 0) + (userResourceDetails?.NetUsed ?? 0));
       const availableEnergy =
         (userResourceDetails?.EnergyLimit ?? 0) - (userResourceDetails?.EnergyUsed ?? 0);
+
+        console.log({availableEnergy, availableBandwidth});
   
-      if (availableEnergy < 150000) {
-        toast.error("Insufficient energy for this transaction. Minimum 150,000 required.");
-        return;
-      }
+      // if (availableEnergy < 150000) {
+      //   toast.error("Insufficient energy for this transaction. Minimum 150,000 required.");
+      //   return;
+      // }
   
-      if (availableBandwidth < 5000) {
-        toast.error("Insufficient bandwidth for this transaction. Minimum 5,000 required.");
-        return;
-      }
+      // if (availableBandwidth < 5000) {
+      //   toast.error("Insufficient bandwidth for this transaction. Minimum 5,000 required.");
+      //   return;
+      // }
 
       // CHECK USER HAVE MORE THAN ZERO AMOUNT TO CLAIM THEIR REWARD
       const claimRewardData = await claimRewardApi(userStateData?.dataObject?.walletAddress as string);
