@@ -17,7 +17,7 @@ import MintedTransactions from "./MintedTransactions";
 import ShimmerEffect from "@/app/components/ShimmerEffect";
 import {approvalApi, claimRewardAmountApi, claimRewardApi, 
 createClaimRewardWeb2Api, createMintWeb2Api, createStakeTransactionWeb2Api, getAllUserCountWeb2Api, 
-getBalanceApi, getCappingAmountApi, getDirectBonusApi, getInitialReturn, getLastMintTimeFromWeb3, getTotalStakeLengthFromWeb3, getUserDetailsApi, mainnetUserMainnetResourceApi, mintUserApi, referralRewardApi, stakeSulBalanceApi, 
+getBalanceApi, getCappingAmountApi, getDirectBonusApi, getInitialReturn, getLastMintTimeFromWeb3, getStakeAmountApi, getTotalStakeLengthFromWeb3, getUserDetailsApi, mainnetUserMainnetResourceApi, mintUserApi, referralRewardApi, stakeSulBalanceApi, 
 // updateStakeByIdWeb2Api,
  userAllStakesApi } from "@/api/apiFunctions";
 import { useSelector } from "react-redux";
@@ -84,7 +84,8 @@ const DashBoard: React.FC = () => {
         getAllUserCountWeb2Api(),
         getDirectBonusApi(walletAddress),
         getCappingAmountApi(walletAddress),
-        getBalanceApi("PMLehxcThfypWV79uGiPYCduVdTkajZu7m"),
+        // getBalanceApi("PMLehxcThfypWV79uGiPYCduVdTkajZu7m"),
+        getStakeAmountApi(),
         getTotalStakeLengthFromWeb3(walletAddress),
         getInitialReturn(walletAddress)
       ]);
