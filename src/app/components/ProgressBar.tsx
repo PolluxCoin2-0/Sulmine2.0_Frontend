@@ -120,71 +120,72 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
   
 
   return (
-    <div style={{ width: size, height: size }} className="relative">
-      <svg className="w-full h-full" viewBox="0 0 100 100">
-        <circle
-          className="circle-progress-circle"
-          cx="50"
-          cy="50"
-          r={radius}
-          fill="none"
-          stroke={bgColor}
-          strokeWidth={strokeWidth}
-        />
-        <circle
-          className="circle-progress-value"
-          cx="50"
-          cy="50"
-          r={radius}
-          fill="none"
-          stroke={color}
-          strokeWidth={strokeWidth}
-          strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          strokeLinecap="round"
-          style={{ transition: "stroke-dashoffset 0.5s ease" }}
-        />
+<div style={{ width: size, height: size }} className="relative">
+  <svg className="w-full h-full" viewBox="0 0 100 100">
+    <defs>
+      <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#8A3AB0" />
+        <stop offset="100%" stopColor="#6E44FF" />
+      </linearGradient>
+    </defs>
 
-        {/* Center text showing amount */}
-        <text
-          x="50"
-          y="40"
-          textAnchor="middle"
-          dominantBaseline="central"
-          fontSize="10"
-          fill={color}
-          fontWeight="bold"
-        >
-          {stakeAmount ? stakeAmount.toLocaleString() : "0"} SUL
-        </text>
+    <circle
+      cx="50"
+      cy="50"
+      r={radius}
+      fill="none"
+      stroke={bgColor}
+      strokeWidth={strokeWidth}
+    />
+    <circle
+      cx="50"
+      cy="50"
+      r={radius}
+      fill="none"
+      stroke="url(#progressGradient)"
+      strokeWidth={strokeWidth}
+      strokeDasharray={circumference}
+      strokeDashoffset={strokeDashoffset}
+      strokeLinecap="round"
+      style={{ transition: "stroke-dashoffset 0.7s ease" }}
+    />
 
-        {/* Phase information */}
-        <text
-          x="50"
-          y="52"
-          textAnchor="middle"
-          dominantBaseline="central"
-          fontSize="8"
-          fill={color}
-        >
-          Phase {currentPhase} : {formatAmount(phaseGoal)}
-        </text>
+    {/* Stake Amount */}
+    <text
+      x="50"
+      y="42"
+      textAnchor="middle"
+      fontSize="9"
+      fill="#ffffff"
+      fontWeight="bold"
+    >
+      {stakeAmount ? stakeAmount.toLocaleString() : "0"} SUL
+    </text>
 
-        {/* Progress percentage */}
-        <text
-          x="50"
-          y="68"
-          textAnchor="middle"
-          dominantBaseline="central"
-          fontSize="7"
-          fill={bgColor}
-        >
-          {/* {Math.round(progress * 100)}% Complete */}
-          {(progress * 100).toFixed(2)}% Complete
+    {/* Phase info */}
+    <text
+      x="50"
+      y="54"
+      textAnchor="middle"
+      fontSize="7"
+      fill="#cccccc"
+    >
+      Phase {currentPhase} : {formatAmount(phaseGoal)}
+    </text>
 
-        </text>
-      </svg>
-    </div>
+    {/* Percentage */}
+    <text
+      x="50"
+      y="66"
+      textAnchor="middle"
+      fontSize="6"
+      fill="#999999"
+    >
+      {(progress * 100).toFixed(2)}% Complete
+    </text>
+  </svg>
+</div>
+
   );
 };
 

@@ -88,7 +88,7 @@ const Navbar: React.FC = () => {
             href="/Support"
             className="font-medium text-base text-white px-8 py-2 rounded-xl border-2 border-gray-500
   transition-all duration-300 ease-in-out shadow-md 
-  hover:border-[#572EAC] hover:text-white hover:bg-[#1a1a1a] hover:shadow-lg"
+  hover:border-gray-200 hover:text-white hover:bg-[#1a1a1a] hover:shadow-lg"
           >
             Help
           </Link>
@@ -105,9 +105,9 @@ const Navbar: React.FC = () => {
             onClick={handleSignOut}
             className="relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group rounded-xl"
           >
-            <span className="w-full h-full bg-gradient-to-r from-[#572EAC] to-[#8922B3] group-hover:from-[#572EAC] group-hover:to-[#8922B3] absolute"></span>
-            <span className="relative px-3 md:px-6 py-2 transition-all ease-out bg-gray-900 rounded-xl group-hover:bg-opacity-0 duration-400">
-              <span className="relative text-white text-nowrap">Sign out</span>
+            <span className="w-full h-full bg-white absolute"></span>
+            <span className="relative px-3 md:px-6 py-2 transition-all ease-out bg-gray-900 rounded-xl group-hover:bg-opacity-0 group-hover:text-black text-white duration-400">
+              <span className="relative text-nowrap">Sign out</span>
             </span>
           </button>
         </div>

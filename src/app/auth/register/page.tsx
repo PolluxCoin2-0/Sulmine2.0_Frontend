@@ -267,7 +267,7 @@ const RegistrationPage: React.FC = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden p-4"
       style={{
         background:
-          "linear-gradient(90deg, rgba(137, 34, 179, 0.9) 0%, rgba(90, 100, 214, 0.9) 30%, rgba(185, 77, 228, 0.9) 63.5%, rgba(93, 99, 214, 0.9) 100%)",
+          "linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(50,50,50,0.7) 30%, rgba(200,200,200,0.7) 63.5%, rgba(255,255,255,0.85) 100%)",
       }}
     >
       {/* Modal */}
@@ -296,12 +296,12 @@ const RegistrationPage: React.FC = () => {
               To earn{" "}
               <span className="font-semibold text-black">referral income</span>,
               you must stake a minimum of
-              <span className="font-bold text-purple-600"> 200 POX. </span>
+              <span className="font-bold text-black"> 200 POX. </span>
             </p>
             <div className="mt-6 flex justify-center w-full">
               <button
                 onClick={handleCloseModal}
-                className="px-4 py-2 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition w-full"
+                className="px-4 py-2 bg-black text-white font-semibold rounded-md hover:bg-black/85 transition w-full"
               >
                 Okay
               </button>
@@ -310,24 +310,28 @@ const RegistrationPage: React.FC = () => {
         </div>
       )}
 
-      {/* Moving Balls */}
-      <div className="absolute inset-0 -z-10">
-        {Array.from({ length: 20 }).map((_, index) => (
-          <div
-            key={index}
-            className="absolute rounded-full w-8 h-8 md:w-12 md:h-12 opacity-80 animate-smoothMove"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              backgroundColor: `hsl(${Math.random() * 360}, 100%, 60%)`,
-              animation: `moveBall ${
-                Math.random() * 10 + 5
-              }s ease-in-out infinite`,
-            }}
-          ></div>
-        ))}
-      </div>
+<div className="absolute inset-0 -z-10">
+  {Array.from({ length: 20 }).map((_, index) => {
+    // Generate colors from dark to light range to match the gradient
+    const hue = 0; // Keep it neutral like grayscale
+    const lightness = 30 + Math.random() * 40; // 30% to 70%
+    const saturation = 0; // Keep saturation at 0 for grayscale
+
+    return (
+      <div
+        key={index}
+        className="absolute rounded-full w-8 h-8 md:w-12 md:h-12 opacity-60 animate-smoothMove blur-sm"
+        style={{
+          top: `${Math.random() * 100}%`,
+          left: `${Math.random() * 100}%`,
+          animationDelay: `${Math.random() * 5}s`,
+          backgroundColor: `hsl(${hue}, ${saturation}%, ${lightness}%)`,
+          animation: `moveBall ${Math.random() * 10 + 5}s ease-in-out infinite`,
+        }}
+      ></div>
+    );
+  })}
+</div>
 
       {/* Registration Card (Only visible if modal is closed) */}
       {!isModalOpen && (
@@ -343,7 +347,7 @@ const RegistrationPage: React.FC = () => {
                 onClick={userWalletAddress ? undefined : handleWalletAddress}
                 type="text"
                 placeholder="Wallet Address"
-                className="w-full px-10 md:px-14 py-3 md:py-5 rounded-xl bg-white/10 text-white placeholder:text-white/70 focus:ring-1 focus:ring-black focus:outline-none focus:shadow-lg transition duration-300"
+                className="w-full px-10 md:px-14 py-3 md:py-5 rounded-xl bg-white/10 text-black placeholder:text-black/70 focus:ring-1 focus:ring-black focus:outline-none focus:shadow-lg transition duration-300"
               />
               <WalletIcon className="absolute top-1/2 left-3 md:left-4 h-6 w-6 md:h-8 md:w-8 text-white/60 group-focus-within:text-black transform -translate-y-1/2 transition duration-300" />
             </div>
@@ -359,7 +363,7 @@ const RegistrationPage: React.FC = () => {
                 type="number"
                 inputMode="numeric"
                 placeholder="Sul Amount"
-                className="w-full px-10 md:px-14 py-3 md:py-5 rounded-xl bg-white/10 text-white placeholder:text-white/70 focus:ring-1 focus:ring-black focus:outline-none focus:shadow-lg transition duration-300 appearance-none"
+                className="w-full px-10 md:px-14 py-3 md:py-5 rounded-xl bg-white/10 text-black placeholder:text-black/70 focus:ring-1 focus:ring-black focus:outline-none focus:shadow-lg transition duration-300 appearance-none"
               />
               <Image
               alt="gray-sul-logo"
@@ -380,41 +384,41 @@ const RegistrationPage: React.FC = () => {
                 }
                 type="text"
                 placeholder="Referral Wallet Address"
-                className="w-full px-10 md:px-14 py-3 md:py-5 rounded-xl bg-white/10 text-white placeholder:text-white/70 focus:ring-1 focus:ring-black focus:outline-none focus:shadow-lg transition duration-300"
+                className="w-full px-10 md:px-14 py-3 md:py-5 rounded-xl bg-white/10 text-black placeholder:text-black/70 focus:ring-1 focus:ring-black focus:outline-none focus:shadow-lg transition duration-300"
               />
               <UserIcon className="absolute top-1/2 left-3 md:left-4 h-6 w-6 md:h-8 md:w-8 text-white/60 group-focus-within:text-black transform -translate-y-1/2 transition duration-300" />
             </div>
             {/* Register Button */}
             {isLoading ? (
-              <div className="w-full rounded-xl flex justify-center bg-gradient-to-r from-[rgba(137,34,179,0.7)] via-[rgba(90,100,214,0.7)] to-[rgba(185,77,228,0.7)] ">
+              <div className="w-full rounded-xl flex justify-center bg-gray-800/40">
                 <Loader />
               </div>
             ) : (
               <button
                 type="submit"
-                className="w-full py-3 md:py-4 rounded-xl text-white font-semibold bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 shadow-xl hover:shadow-purple-800/50 transform hover:scale-105 transition duration-300"
+                className="w-full py-3 md:py-4 rounded-xl text-white font-semibold bg-black shadow-xl hover:shadow-black/50 transform hover:scale-105 transition duration-300"
               >
                 Register
               </button>
             )}
           </form>
           {/* Terms and Conditions */}
-          <p className="text-xs md:text-sm text-white/70 mt-4 md:mt-6 text-center">
+          <p className="text-xs md:text-sm text-black/80 mt-4 md:mt-6 text-center">
             By registering, you agree to our{" "}
             <a
               href="#"
-              className="text-purple-300 hover:text-purple-800 underline"
+              className="text-black hover:text-black/90 underline"
             >
               Terms & Conditions
             </a>
             .
           </p>
           {/* Login Link */}
-          <p className="text-xs md:text-sm text-white/70 mt-2 text-center">
+          <p className="text-xs md:text-sm text-black/80 mt-2 text-center">
             Already have an account?{" "}
             <Link
               href="/auth/login"
-              className="text-purple-300 hover:text-purple-800 underline"
+              className="text-black hover:text-black/90 underline"
             >
               Login
             </Link>
