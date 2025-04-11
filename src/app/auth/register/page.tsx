@@ -212,12 +212,12 @@ const RegistrationPage: React.FC = () => {
         referralAddress
       );
       console.log("registerApiRepsponseData", registerApiResponseData);
-      if (registerApiResponseData?.data === "Duplicate Wallet") {
+      if (registerApiResponseData?.message === "Duplicate Wallet") {
         toast.error("Wallet Address already registered!");
         throw new Error("Wallet Address already registered!");
       }
 
-      if (registerApiResponseData?.data === "Invalid Referral Code") {
+      if (registerApiResponseData?.message === "Invalid Referral Code") {
         toast.error("Invalid Referral Code!");
         throw new Error("Invalid Referral Code!");
       }
